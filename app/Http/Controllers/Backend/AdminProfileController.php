@@ -11,15 +11,14 @@ use Auth;
 class AdminProfileController extends Controller
 {
     //
-
     public function viewAdminProfile(){
         $adminData = Admin::find(1);
-        return view('admin.admin_profile_view', compact('adminData'));
+        return view('dashboard.admin.profile.admin_profile_view', compact('adminData'));
     }
 
     public function editAdminProfile(){
         $editData = Admin::find(1);
-        return view('admin.admin_profile_edit', compact('editData'));
+        return view('dashboard.admin.profile.admin_profile_edit', compact('editData'));
     }
 
     
@@ -46,7 +45,7 @@ class AdminProfileController extends Controller
     }
     
     public function adminChangePassword(){
-        return view('admin.admin_change_password');
+        return view('dashboard.admin.profile.admin_change_password');
     }
 
     public function adminUpdatePassword(Request $request){
@@ -77,4 +76,5 @@ class AdminProfileController extends Controller
             return redirect()->back()->with($notification);
         }
     }
-}
+
+    }

@@ -1,0 +1,55 @@
+
+.btn-primaryn {
+    --bs-btn-color: #fff;
+    --bs-btn-bg: #016bf8;
+    --bs-btn-border-color: #0aad0a;
+    --bs-btn-hover-color: #fff;
+    --bs-btn-hover-bg: #099309;
+    --bs-btn-hover-border-color: #088a08;
+    --bs-btn-focus-shadow-rgb: 47,185,47;
+    --bs-btn-active-color: #fff;
+    --bs-btn-active-bg: #088a08;
+    --bs-btn-active-border-color: #088208;
+    --bs-btn-active-shadow: inset 0 3px 5pxrgba(0,0,0,.125);
+    --bs-btn-disabled-color: #fff;
+    --bs-btn-disabled-bg: #0aad0a;
+    --bs-btn-disabled-border-color: #0aad0a;
+}
+
+.btn:hover {
+    background-color: #016bf8;
+    border-color: #016bf8;
+    color: var(--bs-btn-hover-color);
+}
+
+
+.btn:active {
+    background-color: #016bf8;
+    border-color: #016bf8;
+    border-color: #016bf8;
+}
+
+.navbar .navbar-nav .nav-item .nav-link {
+    color: #21313c;
+    font-size: .938rem;
+    font-weight: 500;
+    padding: 0.3125rem 0.5rem;
+}
+
+.navbar .navbar-nav .nav-item .nav-link:hover {
+    color: #1254b7;
+}
+
+.text-primary {
+    --bs-text-opacity: 1;
+    color: #21313c !important;
+}
+
+.card-product:hover {
+    border: 1px solid #016bf8;
+    box-shadow: 0 5px 12px rgb(0 0 0 / 12%);
+    transition: .2s;
+    -moz-transition: .2s;
+    -webkit-transition: .2s;
+    -o-transition: .2s;
+}

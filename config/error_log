@@ -1,0 +1,8 @@
+[23-Nov-2022 23:33:23 America/Chicago] PHP Fatal error:  Uncaught Error: Call to undefined function env() in /home4/amymgrou/public_html/config/cache.php:18
+Stack trace:
+#0 {main}
+  thrown in /home4/amymgrou/public_html/config/cache.php on line 18
+[24-Nov-2022 15:40:08 America/Chicago] PHP Fatal error:  Uncaught Error: Call to undefined function env() in /home4/amymgrou/public_html/config/cache.php:18
+Stack trace:
+#0 {main}
+  thrown in /home4/amymgrou/public_html/config/cache.php on line 18

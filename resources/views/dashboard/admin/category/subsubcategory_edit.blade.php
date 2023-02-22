@@ -1,0 +1,131 @@
+@extends('dashboard.dashboard_master')
+
+@section('main_header')
+    <div id="layout-wrapper">
+        @include('dashboard.body_layout.header')
+    </div>
+@endsection
+
+@section('dash_main_content')
+    @include('dashboard.admin.admin_sidebar')
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+    <div class="main-content">
+        <!-- Main content -->
+        <div class="page-content">
+            <div class="container-fluid">
+                <!-- start page title -->
+                <div class="row">
+                    <div class="col-12">
+                        <div class="page-title-box d-sm-flex align-items-center justify-content-between">
+                            <h4 class="mb-sm-0">Les Categories</h4>
+                            <div class="page-title-right">
+                                <ol class="breadcrumb m-0">
+                                    <li class="breadcrumb-item"><a href="javascript: void(0);">Admin</a></li>
+                                    <li class="breadcrumb-item active">Editer La Sous Categori</li>
+                                </ol>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-8">
+                        <div class="card">
+                            <div class="card-body">
+                                <h4 class="card-title">Editer La 2iem sous categorie</h4>
+                                <form method="post" action="{{ route('store.subsubcategory_update', $subsubcategory->id)}}" >
+                                    @csrf
+                                    <input type="hidden" name="id"  class="form-control" value="{{ $subsubcategory->id }}" >
+                                    <div class="row">
+                                        <div class="col-md-12">
+                                            <div class="mb-3">
+                                                <label for="validationCustom01" class="form-label">Categorie<span class="text-danger">*</span></label>
+                                                <select class="form-select" name="category_id" id="category_id" required>
+                                                    <option selected disabled value="">Choisir...</option>
+                                                    @foreach($categories as $cat)
+                                                        <option value="{{$cat->id}}" {{$cat->id === $subsubcategory->category_id ? 'selected' : '' }}>
+                                                            {{$cat->category_name_en}}</option>
+                                                    @endforeach
+                                                </select>
+                                                @error('category_id')<span  class="text-danger"> {{ $message}}</span>@enderror
+                                            </div>
+                                        </div>
+
+                                        <div class="col-md-12">
+                                            <div class="mb-3">
+                                                <label for="validationCustom01" class="form-label">Categorie<span class="text-danger">*</span></label>
+                                                <select class="form-select" name="subcategory_id" id="subcategory_id" required>
+                                                    <option selected disabled value="">Choisir...</option>
+                                                    @foreach($subcategories as $subcat)
+                                                        <option value="{{$subcat->id}}" {{$subcat->id === $subsubcategory->subcategory_id ? 'selected' : '' }}>
+                                                            {{$subcat->subcategory_name_en}}</option>
+                                                    @endforeach
+                                                </select>
+                                                @error('subcategory_id')<span  class="text-danger"> {{ $message}}</span>@enderror
+                                            </div>
+                                        </div>
+
+                                        <div class="col-md-12">
+                                            <div class="mb-3">
+                                                <label for="validationCustom01" class="form-label">Sub-> Sub Category Name French<span class="text-danger">*</span></label>
+                                                <div class="input-group">
+                                                    <input type="text" class="form-control" name="subsubcategory_name_fr" id="subsubcategory_name_fr"
+                                                    value= "{{ $subsubcategory->subsubcategory_name_fr}}">
+                                                    @error('subsubcategory_name_fr')<span  class="text-danger"> {{ $message}}</span>@enderror
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-12">
+                                            <div class="mb-3">
+                                                <label for="validationCustom01" class="form-label">Sub Category Name English<span class="text-danger">*</span></label>
+                                                <div class="input-group">
+                                                    <input type="text" class="form-control" name="subsubcategory_name_en" id="subsubcategory_name_en"
+                                                    value= "{{ $subsubcategory->subsubcategory_name_en}}">
+                                                    @error('subsubcategory_name_en')<span  class="text-danger"> {{ $message}}</span>@enderror
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="col-md-12">
+                                            <input type="submit" class="btn btn-info waves-effect waves-light" value="Sauvegardez les Changements">
+                                        </div>
+
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+		
+    <!-- /.content -->
+    <script type="text/javascript">
+        $(document).ready(function() {
+            $('select[name="category_id"]').on('change', function(){
+                var category_id = $(this).val();
+                console.log('category_id ' + category_id)
+                if(category_id) {
+                    $.ajax({
+                        url: "{{  url('/category/subcategory/ajax') }}/"+category_id,
+                        type:"GET",
+                        dataType:"json",
+                        success:function(data) {
+                        var d = $('select[name="subcategory_id"]').empty();
+                            $.each(data, function(key, value){
+                                $('select[name="subcategory_id"]').append('<option value="'+ value.id +'">' + value.subcategory_name_en + '</option>');
+                            });
+                        },
+                    });
+                } else {
+                    alert('danger');
+                }
+            });
+        });
+    </script>
+	  
+
+@endsection

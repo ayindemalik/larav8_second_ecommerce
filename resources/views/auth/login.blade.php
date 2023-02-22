@@ -1,122 +1,77 @@
-@extends('frontend.main_master')
+@extends('dashboard.dashboard_master')
 
-@section('main_content')
+@section('dash_main_content')
 
-<div class="breadcrumb">
-	<div class="container">
-		<div class="breadcrumb-inner">
-			<ul class="list-inline list-unstyled">
-				<li><a href="home.html">Home</a></li>
-				<li class='active'>Login</li>
-			</ul>
-		</div><!-- /.breadcrumb-inner -->
-	</div><!-- /.container -->
-</div><!-- /.breadcrumb -->
+<body class="" >
+  <div class="bg-overlay"></div>
+  <div class="wrapper-page">
+      <div class="container-fluid p-0">
+          <div class="card">
+              <div class="card-body">
 
-<div class="body-content">
-	<div class="container">
-		<div class="sign-in-page">
-			<div class="row">
-				<!-- Sign-in -->			
-                <div class="col-md-6 col-sm-6 sign-in">
-                    <h4 class="">Sign in</h4>
-                    <p class="">Hello, Welcome to your account.</p>
-                    <div class="social-sign-in outer-top-xs">
-                        <a href="#" class="facebook-sign-in"><i class="fa fa-facebook"></i> Sign In with Facebook</a>
-                        <a href="#" class="twitter-sign-in"><i class="fa fa-twitter"></i> Sign In with Twitter</a>
-                    </div>
-                    <form class="register-form outer-top-xs" method="POST" action="{{ isset($guard) ? url($guard.'/login') : route('login') }}">
+                  <div class="text-center mt-4">
+                      <div class="mb-3">
+                        <a href="" class="auth-logo">
+                            <img src="{{ asset('frontend/assets/images/logo/Jalla_Logo-356x300.png') }}" height="50" class="logo-dark mx-auto" alt="">
+                            <img src="{{ asset('frontend/assets/images/logo/Jalla_Logo-356x300.png') }}" height="50" class="logo-light mx-auto" alt="">
+                        </a>
+                      </div>
+                  </div>
+
+                  <h2 class="text-muted text-center font-size-18"><b>Management System</b></h2>
+                  <h4 class="text-muted text-center font-size-18"><b>Login</b></h4>
+
+                  <div class="p-3">
+                      <form class="form-horizontal mt-3" method="post" 
+                        action="{{ isset($guard) ? url($guard.'/login') : route('login') }}">
                         @csrf
-                        <div class="form-group">
-                            <label class="info-title" for="exampleInputEmail1">Email Address <span>*</span></label>
-                            <input type="email" class="form-control unicase-form-control text-input"  id="email"  name="email" required>
-                            @error('email')
-                                <span class="invalid-feedback" role="alert">
-                                    <strong>{{$message}}</strong>
-                                </span>
-                            @enderror
-                        </div>
-                        <div class="form-group">
-                            <label class="info-title" for="exampleInputPassword1">Password <span>*</span></label>
-                            <input type="password" class="form-control unicase-form-control text-input" id="password" name="password" required >
-                            @error('password')
-                                <span class="invalid-feedback" role="alert">
-                                    <strong>{{$message}}</strong>
-                                </span>
-                            @enderror
-                        </div>
-                        <div class="radio outer-xs">
-                            <label>
-                                <input type="radio" name="optionsRadios" id="optionsRadios2" value="option2">Remember me!
-                            </label>
-                            <a href="{{ route('password.request') }}" class="forgot-password pull-right">Forgot your Password?</a>
-                        </div>
-                        <button type="submit" class="btn-upper btn btn-primary checkout-page-button">Login</button>
-                    </form>					
-                </div>
-                <!-- Sign-in -->
+                          <div class="form-group mb-3 row">
+                              <div class="col-12">
+                                <input type="email" class="form-control unicase-form-control text-input"  id="email"  name="email" required
+                                placeholder="email">
+                                @error('email')
+                                    <span class="invalid-feedback" role="alert"><strong>{{$message}}</strong>
+                                    </span>
+                                @enderror
+                              </div>
+                          </div>
 
-                <!-- create a new account -->
-                <div class="col-md-6 col-sm-6 create-new-account">
-                    <h4 class="checkout-subtitle">Create a new account</h4>
-                    <p class="text title-tag-line">Create your new account.</p>
-                    <form class="register-form outer-top-xs"  method="POST" action="{{ route('register') }}">
-                        @csrf
-                        <div class="form-group">
-                            <label class="info-title" fsor="exampleInputEmail2">Email Address <span>*</span></label>
-                            <input type="email" class="form-control unicase-form-control text-input" id="email"  name="email"   >
-                            @error('email')
-                            <span class="invalid-feedback" role="alert">
-                                <strong>{{$message}}</strong>
-                            </span>
-                            @enderror
-                        </div>
-                        <div class="form-group">
-                            <label class="info-title" for="exampleInputEmail1">Name <span>*</span></label>
-                            <input type="text" class="form-control unicase-form-control text-input" id="name"  name="name"  >
-                            @error('name')
-                            <span class="invalid-feedback" role="alert">
-                                <strong>{{$message}}</strong>
-                            </span>
-                            @enderror
-                        </div>
-                        <div class="form-group">
-                            <label class="info-title" for="exampleInputEmail1">Phone Number <span>*</span></label>
-                            <input type="text" class="form-control unicase-form-control text-input" id="phone"  name="phone"  >
-                            @error('phone')
-                            <span class="invalid-feedback" role="alert">
-                                <strong>{{$message}}</strong>
-                            </span>
-                            @enderror
-                        </div>
-                        
-                        <div class="form-group">
-                            <label class="info-title" for="exampleInputEmail1">Password <span>*</span></label>
-                            <input type="password" class="form-control unicase-form-control text-input" id="password"  name="password"  >
-                            @error('password')
-                            <span class="invalid-feedback" role="alert">
-                                <strong>{{$message}}</strong>
-                            </span>
-                            @enderror
-                        </div>
-                        <div class="form-group">
-                            <label class="info-title" for="exampleInputEmail1">Confirm Password <span>*</span></label>
-                            <input type="password" class="form-control unicase-form-control text-input" id="password_confirmation"  name="password_confirmation"  >
-                            @error('password_confirmation')
-                            <span class="invalid-feedback" role="alert">
-                                <strong>{{$message}}</strong>
-                            </span>
-                            @enderror
-                        </div>
-                        <button type="submit" class="btn-upper btn btn-primary checkout-page-button">Sign Up</button>
-                    </form>
-                    
-                    
-                </div>	
-                <!-- create a new account -->			
-            </div><!-- /.row -->
-        </div><!-- /.sigin-in-->
-		
-</div><!-- /.body-content -->
+                          <div class="form-group mb-3 row">
+                              <div class="col-12">
+                                <input type="password" class="form-control unicase-form-control text-input" id="password" name="password" required >
+                                @error('password')
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{$message}}</strong>
+                                    </span>
+                                @enderror
+                              </div>
+                          </div>
+
+                          <div class="form-group mb-3 text-center row mt-3 pt-1">
+                              <div class="col-12">
+                                  <button class="btn btn-info w-100 waves-effect waves-light" type="submit">Login</button>
+                              </div>
+                          </div>
+
+                          <div class="form-group mb-0 row mt-2">
+                              <div class="col-sm-6 mt-3">
+                                  <a href="{{ route('password.request') }}" class="text-muted"><i class="mdi mdi-lock"></i> Forgot your password ?</a>
+                              </div>
+                              
+                          </div>
+                      </form>
+                  </div>
+                  <!-- end -->
+              </div>
+              <!-- end cardbody -->
+          </div>
+          <!-- end card -->
+      </div>
+      <!-- end container -->
+  </div>
+  <!-- end -->
+</body>
+
 
 @endsection
+
